@@ -1,35 +1,45 @@
+import asyncio
+import asyncpg
 from flask import Flask, request, jsonify
-import asyncpg, asyncio, datetime
 
 app = Flask(__name__)
 
-@app.route("/")
+# Configuración de conexión a Neon
+DATABASE_URL = "postgresql://neondb_owner:npg_nRaX64fFLPvz@ep-fancy-glade-a44j0e4a-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require"
+
+# Ruta raíz
+@app.route("/", methods=["GET"])
 def index():
-    return "Flask + Neon funcionando"
+    return jsonify({"status": "ok", "message": "Flask + Neon funcionando"})
 
-@app.route("/db")
-def db():
-    async def fetch_version():
-        conn = await asyncpg.connect(
-            "postgresql://neondb_owner:npg_nRaX64fFLPvz@ep-fancy-glade-a44j0e4a-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
-        )
-        version = await conn.fetchval("SELECT version();")
-        await conn.close()
-        return version
+# Ruta webhook
+@app.route("/webhook", methods=["POST"])
+def webhook():
+    data = request.json or {}
+    token = data.get("token")
 
-    return asyncio.run(fetch_version())
-
-@app.route("/auditoria")
-def auditoria():
-    ip = request.remote_addr
-    agente = request.headers.get("User-Agent")
-    fecha = datetime.datetime.utcnow().isoformat()
-
-    return jsonify({
-        "ip": ip,
-        "agente": agente,
-        "fecha": fecha
+    print("Evento recibido:", {
+        "evento": data,
+        "token_presente": bool(token)
     })
 
+    return jsonify({"status": "ok", "evento": data}), 200
+
+# Ruta de prueba de conexión a Neon
+@app.route("/dbtest", methods=["GET"])
+def dbtest():
+    async def run():
+        conn = await asyncpg.connect(DATABASE_URL)
+        row = await conn.fetchrow("SELECT NOW() as current_time;")
+        await conn.close()
+        return row["current_time"]
+
+    loop = asyncio.get_event_loop()
+    result = loop.run_until_complete(run())
+    return jsonify({"neon_time": str(result)})
+
 if __name__ == "__main__":
-    app.run()
+    app.run(host="0.0.0.0", port=5000)
+
+
+
