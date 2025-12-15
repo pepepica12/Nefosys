@@ -1,0 +1,20 @@
+CREATE TABLE usuarios (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  nombre TEXT NOT NULL,
+  rol TEXT NOT NULL
+);
+
+CREATE TABLE proyectos (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  nombre TEXT NOT NULL,
+  descripcion TEXT,
+  responsable_id INTEGER,
+  FOREIGN KEY(responsable_id) REFERENCES usuarios(id)
+);
+
+CREATE TABLE auditoria (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  usuario TEXT,
+  accion TEXT,
+  fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
