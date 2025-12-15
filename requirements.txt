@@ -1,2 +1,2 @@
-flask
-asyncpg
+flask==2.3.3
+asyncpg==0.29.0

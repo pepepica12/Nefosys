@@ -1,10 +1,8 @@
 # Nefosys
 
-
-Plataforma Neón con integración de base de datos auditable y API para PinFlo.
-
-Sistema para gestión de compras e inventario, con trazabilidad vía IP para monitoreo de clientes y usuarios de ventas.  
-No está orientado al cliente final, sino a la administración y auditoría interna.
+Plataforma Neón con integración de base de datos  
+Sistema para gestión de compras e inventario  
+No está orientado al cliente final, sino a la administración interna  
 
 ## Características
 - Registro automático de usuarios con IP pública
@@ -13,11 +11,22 @@ No está orientado al cliente final, sino a la administración y auditoría inte
 - Backend Flask + Neon (PostgreSQL)
 - Despliegue en Vercel
 
-
-
 ## Instalación
 ```bash
-git clone https://github.com/tuusuario/nefosys.git
+# Clonar el repositorio
+git clone https://github.com/pepepica12/nefosys.git
 cd nefosys
+
+# Crear entorno virtual
+python3 -m venv venv
+source venv/bin/activate
+
+# Instalar dependencias
 pip install -r requirements.txt
-python app/app.py
+
+# Configurar variables de entorno (ejemplo)
+export DATABASE_URL="postgresql://usuario:password@neon-host/dbname"
+export FLASK_APP=app/app.py
+
+# Ejecutar servidor local
+flask run
