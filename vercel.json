@@ -1,8 +1,9 @@
 {
+  "version": 2,
   "builds": [
-    { "src": "aplicación/aplicación.py", "use": "@vercel/python" }
+    { "src": "package.json", "use": "@vercel/node" }
   ],
-  "routes": [
-    { "src": "/(.*)", "dest": "aplicación/aplicación.py" }
-  ]
+  "env": {
+    "DATABASE_URL": "@DATABASE_URL"
+  }
 }
