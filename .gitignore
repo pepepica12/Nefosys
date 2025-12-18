@@ -1,6 +1,5 @@
-__pycache__/
-*.pyc
+node_modules/
+.pnpm/
+dist/
+*.log
 .env
-
-.vercel
-.env*.local
