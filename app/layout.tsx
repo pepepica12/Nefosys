@@ -5,20 +5,7 @@ export const metadata = {
     template: "%s | Telemetr‑A",
   },
   description:
-    "Telemetr‑A: Plataforma avanzada de telemetría, análisis y visualización de datos en tiempo real.",
-  keywords: [
-    "telemetría",
-    "analítica",
-    "visualización",
-    "datos",
-    "dashboard",
-    "Nefosys",
-    "Railway",
-    "Next.js",
-  ],
-  authors: [{ name: "Telemetr‑A" }],
-  creator: "Telemetr‑A",
-  publisher: "Telemetr‑A",
+    "Plataforma avanzada de telemetría, análisis y visualización de datos en tiempo real.",
 
   openGraph: {
     type: "website",
@@ -30,7 +17,7 @@ export const metadata = {
       "Plataforma avanzada de telemetría, análisis y visualización de datos en tiempo real.",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Telemetr‑A — Vista previa",
@@ -43,28 +30,12 @@ export const metadata = {
     title: "Telemetr‑A",
     description:
       "Plataforma avanzada de telemetría, análisis y visualización de datos en tiempo real.",
-    images: ["/og-image.png"],
+    images: ["/og-image.jpg"],
     creator: "@telemetra",
   },
 
   icons: {
     icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
     apple: "/apple-touch-icon.png",
-  },
-
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      noimageindex: false,
-      "max-image-preview": "large",
-    },
-  },
-
-  alternates: {
-    canonical: "https://telemetr-a-frontend.vercel.app/",
   },
 };
