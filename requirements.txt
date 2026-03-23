@@ -1,5 +1,4 @@
-fastapi
-uvicorn
-sqlalchemy
-psycopg2-binary
+Flask==3.0.2
+psycopg2-binary==2.9.9
+SQLAlchemy==2.0.29
 gunicorn==21.2.0
